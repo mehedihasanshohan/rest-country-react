@@ -12,6 +12,8 @@ const Country = ({country}) => {
   // console.log(country);
   const {area, capital, flags, name, population, region} = country;
 
+  const density =  population.population/ area.area ;
+
   return (
     <>
     {/* <div className='flex justify-between items-center gap-2 border border-amber-300 rounded-lg mt-4 p-4'>
@@ -23,7 +25,6 @@ const Country = ({country}) => {
     >
       <div>
         <h2>Name: <span className='text-rose-300 font-medium'>{name.common}</span> </h2>
-        <p>Area: {area.area}</p>
         <p> Capital: <span className='text-blue-300 font-medium'>{capital.capital[0]}</span></p>
         <p>Region: {region.region}</p>
 
@@ -34,6 +35,20 @@ const Country = ({country}) => {
              {population.population > 200000 ? "A Large Country" : "A Small Country"}
           </span>
         </p>
+
+        {/* density tooltip show on arae hover */}
+        <p className="relative group w-fit cursor-pointer mt-2">
+          Area: {area.area} km²
+         <br />
+          Density: {density.toFixed(2)} per km²
+         <span
+          className={`absolute bottom-full left-0 mb-1 hidden rounded px-2 py-1 text-xs text-white group-hover:block
+          ${density > 1000 ? "bg-red-600" : "bg-green-600"}`}
+         >
+          {density > 1000 ? "Highly Dense Country" : "Low Density Country"}
+         </span>
+        </p>
+
 
         {/* <p>Population: {population.population} <br /> {population.population > 200000 ? 'A Large Country' : 'A Small Country'}</p> */}
           <button onClick={handleVisit} className='mt-2' >{visited? 'Visited' : 'Not Visit yet'}</button>
