@@ -26,7 +26,16 @@ const Country = ({country}) => {
         <p>Area: {area.area}</p>
         <p> Capital: <span className='text-blue-300 font-medium'>{capital.capital[0]}</span></p>
         <p>Region: {region.region}</p>
-        <p>Population: {population.population} <br /> {population.population > 200000 ? 'A Large Country' : 'A Small Country'}</p>
+
+        {/* hover tooptip show on population */}
+        <p className="relative group w-fit cursor-pointer">
+           Population: {population.population}
+           <span className="absolute bottom-full left-0 mb-1 hidden rounded bg-pink-800 px-2 py-1 text-xs text-white group-hover:block">
+             {population.population > 200000 ? "A Large Country" : "A Small Country"}
+          </span>
+        </p>
+
+        {/* <p>Population: {population.population} <br /> {population.population > 200000 ? 'A Large Country' : 'A Small Country'}</p> */}
           <button onClick={handleVisit} className='mt-2' >{visited? 'Visited' : 'Not Visit yet'}</button>
       </div>
       <div className=''>
