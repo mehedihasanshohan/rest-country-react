@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { toast, ToastContainer } from 'react-toastify';
 
 const Country = ({country}) => {
 
@@ -6,6 +7,7 @@ const Country = ({country}) => {
 
   const handleVisit = () =>{
     setVisited(!visited);
+    toast(visited ? "Removed Country from visited list!" : "Country added to visited List!");
   }
   // console.log(country);
   const {area, capital, flags, name, population, region} = country;
@@ -16,7 +18,7 @@ const Country = ({country}) => {
      */}
       <div
       className={`flex justify-between items-center gap-2 border rounded-lg mt-4 p-4 transition-colors duration-300 ${
-        visited ? "bg-gray-800 border-green-400" : "bg-[#242424] border-amber-300"
+        visited ? "bg-slate-700 text-white border-green-400" : "bg-[#242424] border-amber-300"
       }`}
     >
       <div>
@@ -25,7 +27,7 @@ const Country = ({country}) => {
         <p> Capital: <span className='text-blue-300 font-medium'>{capital.capital[0]}</span></p>
         <p>Region: {region.region}</p>
         <p>Population: {population.population} <br /> {population.population > 200000 ? 'A Large Country' : 'A Small Country'}</p>
-        <button onClick={handleVisit} className='mt-2' >{visited? 'Visited' : 'Not Visit yet'}</button>
+          <button onClick={handleVisit} className='mt-2' >{visited? 'Visited' : 'Not Visit yet'}</button>
       </div>
       <div className=''>
         <img className='h-24 w-40 object-cover rounded-2xl' src={flags.flags.svg} alt="" />

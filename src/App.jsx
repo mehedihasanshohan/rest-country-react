@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 import './App.css'
 import Countries from './components/Countries'
+import { ToastContainer } from 'react-toastify'
 
 const countriesPromise = fetch('https://openapi.programming-hero.com/api/all')
   .then(res => res.json())
@@ -11,6 +12,7 @@ function App() {
     <div className='p-4'>
       <Suspense fallback={<p className='text-red-600 text-2xl font-extrabold underline-offset-0'>Countries are loading...</p>}>
         <Countries countriesPromise={countriesPromise}></Countries>
+        <ToastContainer position='top-right' autoClose={1000}></ToastContainer>
       </Suspense>
     </div>
   )
