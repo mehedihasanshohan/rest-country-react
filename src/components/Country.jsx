@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify';
 
-const Country = ({country}) => {
+const Country = ({country, handleVisitedCountries}) => {
 
   const [visited, setVisited] = useState(false);
 
@@ -9,9 +9,9 @@ const Country = ({country}) => {
     setVisited(!visited);
     toast(visited ? "Removed Country from visited list!" : "Country added to visited List!");
   }
+
   // console.log(country);
   const {area, capital, flags, name, population, region} = country;
-
   const density =  population.population/ area.area ;
 
   return (
@@ -43,15 +43,15 @@ const Country = ({country}) => {
           Density: {density.toFixed(2)} per km²
          <span
           className={`absolute bottom-full left-0 mb-1 hidden rounded px-2 py-1 text-xs text-white group-hover:block
-          ${density > 1000 ? "bg-red-600" : "bg-green-600"}`}
+          ${density > 100 ? "bg-red-600" : "bg-green-600"}`}
          >
-          {density > 1000 ? "Highly Dense Country" : "Low Density Country"}
+          {density > 100 ? "Highly Dense Country" : "Low Density Country"}
          </span>
         </p>
 
 
         {/* <p>Population: {population.population} <br /> {population.population > 200000 ? 'A Large Country' : 'A Small Country'}</p> */}
-          <button onClick={handleVisit} className='mt-2' >{visited? 'Visited' : 'Not Visit yet'}</button>
+          <button onClick={() => {handleVisit(); handleVisitedCountries(country)}} className='mt-2' >{visited? 'Visited' : 'Not Visit yet'}</button>
       </div>
       <div className=''>
         <img className='h-24 w-40 object-cover rounded-2xl' src={flags.flags.svg} alt="" />
