@@ -7,8 +7,15 @@ const Countries = ({countriesPromise}) => {
 
   const handleVisitedCountries = (country) => {
     console.log('visited clicked', country);
-    
-  }
+    setVisitedCountries(countries=> {
+      const exists = countries.find(country => country.cca3.cca3 === country.cca3.cca3);
+      if(exists){
+        return countries.filter(country => country.ccca3.cca3 !==country.cca3.cca3);
+      } else{
+        return[...countries,  country];
+      }
+    });
+  };
 
   const countriesData = use(countriesPromise);
   const countries = countriesData.countries;
@@ -33,10 +40,17 @@ const Countries = ({countriesPromise}) => {
       <div className='grid grid-cols-4 gap-4'>
         <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-2 col-span-3'>
           {countries.map(country => <Country handleVisitedCountries={handleVisitedCountries} country={country} key={country.cca3.cca3}></Country>)}
-        </div>
-          <div className="col-span-1 border-l pl-4">
-          <h2 className="font-bold mb-2">Sidebar</h2>
-          <p>Visited countries-</p>
+        <div className="col-span-1 border-l pl-4">
+            <h2 className="font-bold mb-2">Visited Countries ({visitedCountries.length})</h2>
+            <ul className="space-y-2">
+               {visitedCountries.map(c => (
+                  <li key={c.cca3.cca3} className="flex items-center gap-2">
+                  <img src={c.flags.svg} alt={c.name.common} className="h-6 w-10 object-cover rounded" />
+                  <span>{c.name.common}</span>
+                  </li>
+               ))}
+            </ul>
+          </div>
         </div>
       </div>
      </>
