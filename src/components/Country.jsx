@@ -16,13 +16,11 @@ const Country = ({country, handleVisitedCountries}) => {
 
   return (
     <>
-    {/* <div className='flex justify-between items-center gap-2 border border-amber-300 rounded-lg mt-4 p-4'>
-     */}
       <div
       className={`flex justify-between items-center gap-2 border rounded-lg mt-4 p-4 transition-colors duration-300 ${
         visited ? "bg-slate-700 text-white border-green-400" : "bg-[#242424] border-amber-300"
       }`}
-    >
+      >
       <div>
         <h2>Name: <span className='text-rose-300 font-medium'>{name.common}</span> </h2>
         <p> Capital: <span className='text-blue-300 font-medium'>{capital.capital[0]}</span></p>
@@ -51,7 +49,8 @@ const Country = ({country, handleVisitedCountries}) => {
 
 
         {/* <p>Population: {population.population} <br /> {population.population > 200000 ? 'A Large Country' : 'A Small Country'}</p> */}
-          <button onClick={() => {handleVisit(); handleVisitedCountries(country)}} className='mt-2' >{visited? 'Visited' : 'Not Visit yet'}</button>
+          <button onClick={() => handleVisit()} className='mt-2'> {visited? 'Visited' : 'Not Visit yet'}</button>
+          <button onClick={() => handleVisitedCountries(country)} className='mt-2'>Add to List</button>
       </div>
       <div className=''>
         <img className='h-24 w-40 object-cover rounded-2xl' src={flags.flags.svg} alt="" />
